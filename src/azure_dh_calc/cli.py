@@ -4,13 +4,21 @@ from rich.console import Console
 from rich.table import Table
 from .calculator import requirement_from_vm, plan_options, summarize
 
-app = typer.Typer(help="Azure Dedicated Hosts calculator (MVP)")
+app = typer.Typer(add_completion=False, help="Azure Dedicated Hosts calculator (MVP)")
 console = Console()
 
 
-@app.command()
-def calc(region: str, currency: str, vm_sku: str, count: int = typer.Argument(..., min=1)):
-    """Calculate dedicated host options for N instances of a VM SKU."""
+@app.callback(invoke_without_command=True)
+def calc(
+    region: str = typer.Option(..., "--region", "-r", help="Azure region, e.g. westeurope"),
+    currency: str = typer.Option(..., "--currency", "-c", help="Currency code, e.g. USD"),
+    vm_sku: str = typer.Option(..., "--vm-sku", "-s", help="Azure VM size SKU, e.g. D2s_v3"),
+    count: int = typer.Option(..., "--count", "-n", min=1, help="Number of VM instances"),
+):
+    """Calculate dedicated host options for N instances of a VM SKU.
+
+    Uses explicit options to avoid positional parsing ambiguity across shells.
+    """
     # Region & currency presently unused in static MVP - placeholder for future pricing lookup.
     req = requirement_from_vm(vm_sku, count)
     options = plan_options(req)
@@ -32,6 +40,7 @@ def calc(region: str, currency: str, vm_sku: str, count: int = typer.Argument(..
             f"${r['cost_per_vcpu']}",
         )
     console.print(table)
+    raise typer.Exit(0)
 
 
 def main():  # pragma: no cover

@@ -1,3 +1,21 @@
+Metadata-Version: 2.4
+Name: azure-dh-calc
+Version: 0.1.0
+Summary: Azure Dedicated Hosts cost & capacity calculator
+Author: Your Name
+License: MIT
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests>=2.32.3
+Requires-Dist: typer>=0.12.3
+Requires-Dist: rich>=13.7.1
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3.2; extra == "dev"
+Requires-Dist: pytest-cov>=5.0.0; extra == "dev"
+Requires-Dist: ruff>=0.5.5; extra == "dev"
+Dynamic: license-file
+
 # Azure-DH-Calc
 
 ## Azure Dedicated Host Calculator (MVP)

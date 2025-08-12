@@ -1,0 +1,2 @@
+[console_scripts]
+azure-dh-calc = azure_dh_calc.cli:app

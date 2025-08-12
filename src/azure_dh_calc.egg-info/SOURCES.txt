@@ -1,0 +1,17 @@
+LICENSE
+README.md
+pyproject.toml
+src/azure_dh_calc/__init__.py
+src/azure_dh_calc/calculator.py
+src/azure_dh_calc/cli.py
+src/azure_dh_calc/host_catalog.py
+src/azure_dh_calc/models.py
+src/azure_dh_calc/pricing_client.py
+src/azure_dh_calc/vm_catalog.py
+src/azure_dh_calc.egg-info/PKG-INFO
+src/azure_dh_calc.egg-info/SOURCES.txt
+src/azure_dh_calc.egg-info/dependency_links.txt
+src/azure_dh_calc.egg-info/entry_points.txt
+src/azure_dh_calc.egg-info/requires.txt
+src/azure_dh_calc.egg-info/top_level.txt
+tests/test_calculator.py

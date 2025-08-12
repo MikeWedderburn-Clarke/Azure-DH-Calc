@@ -10,7 +10,16 @@ Dev container will auto-install dependencies. From inside the container:
 
 ```bash
 azure-dh-calc calc --help
-azure-dh-calc calc westeurope USD D2s_v3 20
+azure-dh-calc calc --region westeurope --currency USD --vm-sku D2s_v3 --count 20
+
+# Refresh (or create) price cache for a region (full fetch – may take ~10s):
+azure-dh-calc cache-refresh -r westeurope -c USD
+
+# Faster dev refresh limiting records (does not persist all SKUs):
+azure-dh-calc cache-refresh -r westeurope -c USD --vm-max 500 --host-max 50
+
+# Inspect cached host price sample
+azure-dh-calc cache-show -r westeurope --kind hosts --limit 3
 ```
 
 Output: table of feasible homogeneous host options sorted by lowest monthly cost.
@@ -77,9 +86,9 @@ git push -u origin main
 ### Future: Price Retrieval Sketch
 ```python
 from azure_dh_calc.pricing_client import query_prices
-items = query_prices("serviceFamily eq 'Compute' and armRegionName eq 'westeurope' and contains(skuName,'Dedicated Host')", currency_code='USD')
+items = query_prices("serviceFamily eq 'Compute' and armRegionName eq 'westeurope' and contains(productName,'Dedicated Host')", currency_code='USD')
 ```
-Process `unitPrice` and map to host type names.
+Process `unitPrice` and correlate to host capacities.
 
 ### License
 MIT

@@ -76,7 +76,7 @@ Initial recommendation: Azure Function for price + packing API + optionally Stat
 ```bash
 pytest
 ruff check .
-azure-dh-calc calc westeurope USD D2s_v3 10
+/workspaces/Azure-DH-Calc/.venv/bin/azure-dh-calc -r westeurope -c USD -s D2s_v3 -n 10
 ```
 
 ### Creating Remote GitHub Repo & First Push

@@ -47,10 +47,19 @@ def cache_refresh(
     base_dir: Path = typer.Option(Path("data/cache"), "--cache-dir", exists=False, file_okay=False),
     kinds: list[str] = typer.Option(["hosts", "vms"], "--kind", help="Kinds to refresh: hosts, vms"),
     ttl: int = typer.Option(24 * 3600, "--ttl", help="TTL seconds stored in metadata"),
+    vm_max: int | None = typer.Option(None, "--vm-max", help="Optional max VM price records (for quicker dev runs)"),
+    host_max: int | None = typer.Option(None, "--host-max", help="Optional max host price records"),
 ):
     cfg = CacheConfig(base_dir=base_dir, ttl_seconds=ttl)
     try:
-        counts = populate_region_prices(region, currency, cfg, kinds=[k for k in kinds])
+        counts = populate_region_prices(
+            region,
+            currency,
+            cfg,
+            kinds=[k for k in kinds],
+            vm_max=vm_max,
+            host_max=host_max,
+        )
     except Exception as e:  # pragma: no cover
         console.print(f"[red]Failed to refresh cache: {e}[/red]")
         raise typer.Exit(1)

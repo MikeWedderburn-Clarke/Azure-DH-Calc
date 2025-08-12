@@ -2,6 +2,7 @@
 
 ### 0.1.3 - Cache CLI
 - Added CLI commands: cache-refresh, cache-list, cache-show to manage price cache.
+ - Implemented paginated price fetch client (internal) and improved dedicated host filter (productName contains 'Dedicated Host').
 
 ### 0.1.2 - Region Cache Start
 - Introduced cache module storing per-region JSON files for VM (vms.json) and Dedicated Host (hosts.json) price/shape data with TTL.

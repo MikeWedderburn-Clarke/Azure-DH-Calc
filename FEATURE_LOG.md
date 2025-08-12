@@ -1,5 +1,8 @@
 ## Feature Log
 
+### 0.1.2 - Region Cache Start
+- Introduced cache module storing per-region JSON files for VM (vms.json) and Dedicated Host (hosts.json) price/shape data with TTL.
+
 ### 0.1.1 - CLI Fix
 - Converted CLI to single command with explicit options (-r, -c, -s, -n) to resolve positional parsing issue.
 - Updated README usage example.

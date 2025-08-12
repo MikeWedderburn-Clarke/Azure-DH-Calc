@@ -1,5 +1,9 @@
 ## Feature Log
 
+### 0.1.1 - CLI Fix
+- Converted CLI to single command with explicit options (-r, -c, -s, -n) to resolve positional parsing issue.
+- Updated README usage example.
+
 ### 0.1.0 - MVP
 - Dev container setup (Python 3.12).
 - Static VM & Dedicated Host catalogs.
